@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, My Love! ❤️</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ... (keep all the previous CSS styles) ... */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #ffd6e7 0%, #ffb6c1 50%, #ffc3a0 100%);
+            color: #5a3d5c;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0 30px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(155, 89, 182, 0.2);
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .heart-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .heart-background i {
+            position: absolute;
+            color: #ff4081;
+            animation: float 6s infinite ease-in-out;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+        
+        header h1 {
+            font-size: 3.5rem;
+            color: #d63384;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        header h2 {
+            font-size: 2rem;
+            color: #9c27b0;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .birthday-wish {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            padding: 20px 40px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .birthday-wish p {
+            margin-bottom: 15px;
+        }
+        
+        .signature {
+            text-align: right;
+            font-style: italic;
+            font-weight: bold;
+            color: #d63384;
+            font-size: 1.8rem;
+            margin-top: 20px;
+        }
+        
+        .slideshow-container {
+            position: relative;
+            width: 90%;
+            max-width: 800px;
+            height: 500px;
+            margin: 0 auto 40px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+        
+        .slides {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .slide.active {
+            opacity: 1;
+        }
+        
+        .slide-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 15px;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+        
+        .slideshow-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .nav-btn {
+            background: #9c27b0;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .nav-btn:hover {
+            background: #d63384;
+            transform: translateY(-3px);
+        }
+        
+        .audio-player {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 30px auto;
+            max-width: 600px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .audio-player h3 {
+            margin-right: 20px;
+            color: #9c27b0;
+            font-size: 1.3rem;
+        }
+        
+        .audio-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        #playPauseBtn {
+            background: #d63384;
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        #playPauseBtn:hover {
+            background: #9c27b0;
+            transform: scale(1.1);
+        }
+        
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .photo-item {
+            border-radius: 15px;
+            overflow: hidden;
+            height: 250px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            transition: transform 0.5s, box-shadow 0.5s;
+        }
+        
+        .photo-item:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+        }
+        
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 20px 20px 0 0;
+            color: #9c27b0;
+            font-size: 1.2rem;
+        }
+        
+        .heart {
+            color: #ff4081;
+            animation: heartbeat 1.5s infinite;
+            display: inline-block;
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            
+            header h2 {
+                font-size: 1.5rem;
+            }
+            
+            .birthday-wish {
+                font-size: 1.2rem;
+                padding: 15px 20px;
+            }
+            
+            .slideshow-container {
+                height: 400px;
+            }
+            
+            .photo-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+        
+        .file-structure-note {
+            background: #fff;
+            border-left: 4px solid #9c27b0;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .interaction-notice {
+            background: #fff8e1;
+            border: 2px dashed #ff9800;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1rem;
+            color: #5a3d5c;
+        }
+        
+        .interaction-notice i {
+            color: #ff9800;
+            margin-right: 10px;
+        }
+        
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        #volumeSlider {
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="heart-background" id="heartBackground"></div>
+            <h1>Happy Birthday, My Angry Bird! <span class="heart">❤️</span></h1>
+            <h2>The Heart of My Life</h2>
+        </header>
+        
+       
+        
+        <section class="birthday-wish">
+            <p>My Rhino 🕊️,</p>
+            <p>On this special day, I just want you to know how grateful I am to have you in my life. You make my days brighter, my heart calmer, and my life more meaningful just by being you.</p>
+            <p>Every moment we share means so much to me. Your smile gives me strength, your presence feels like home, and loving you feels completely natural.</p>
+            <p>You want to marry me, and that means more to me than I can ever explain. I pray with all my heart that our wish comes true and that we begin our life together in early 2028, Inshallah.</p>
+            <p>Until that day, I promise to love you, respect you, and walk beside you through everything. I love you more than words can express, today and always.</p>
+            <p>12-01-2025 : When I see you in a saree, it feels like time stops. Seeing you in it takes my breath away—will you be mine?💖 <br> Now : Yes — she's mine 🤍🥹</p>
+            <p>Made with <span class="heart">❤️</span> for the most special person in my life</p>
+            <div class="signature">Forever yours,<br>Your future husband ❤️</div>
+        </section>
+        
+        <div class="slideshow-container">
+            <div class="slides">
+                <!-- Slides will be added dynamically by JavaScript -->
+            </div>
+            <div class="slideshow-nav">
+                <button class="nav-btn" id="prevBtn"><i class="fas fa-chevron-left"></i> Previous</button>
+                <button class="nav-btn" id="nextBtn">Next <i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+        
+        <div class="audio-player">
+            <h3>Our Song:</h3>
+            <div class="audio-controls">
+                <button id="playPauseBtn"><i class="fas fa-play"></i></button>
+                <span id="songTitle">Your Special Song</span>
+                <div class="volume-control">
+                    <i class="fas fa-volume-up"></i>
+                    <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="0.5">
+                </div>
+            </div>
+            <audio id="birthdayAudio" loop>
+                <!-- Audio source will be set by JavaScript -->
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        
+        <h2 style="text-align: center; color: #9c27b0; margin: 40px 0 20px;">Our Beautiful Memories</h2>
+        <div class="photo-grid">
+            <!-- Photos will be added dynamically by JavaScript -->
+        </div>
+        
+        <footer>
+            <p>Happy Birthday, my love! May all your dreams come true.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Create floating hearts in background
+        function createFloatingHearts() {
+            const heartContainer = document.getElementById('heartBackground');
+            const heartCount = 25;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('i');
+                heart.className = 'fas fa-heart';
+                heart.style.left = `${Math.random() * 100}%`;
+                heart.style.top = `${Math.random() * 100}%`;
+                heart.style.fontSize = `${Math.random() * 20 + 15}px`;
+                heart.style.animationDelay = `${Math.random() * 5}s`;
+                
+                heartContainer.appendChild(heart);
+            }
+        }
+        
+        // Slideshow functionality with local photos
+        const photoExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+        const slidesData = [
+            { src: "photo/pic1", caption: "I found a love for me" },
+            { src: "photo/pic2", caption: "Celebrating our first year" },
+            { src: "photo/pic3", caption: "The way you look at me melts my heart" },
+            { src: "photo/pic4", caption: "With you, life feels complete." },
+            { src: "photo/pic5", caption: "Two imperfect people choosing each other" },
+            { src: "photo/pic6", caption: "The Heart I Live For" },
+            { src: "photo/pic7", caption: "Just look at her,Still can't believe she's mine" },
+            { src: "photo/pic8", caption: "I see her, and everything slows down" },
+            { src: "photo/pic9", caption: "Every time I look at you, I smile." },
+            { src: "photo/pic10", caption: "From today to forever — early 2028, Inshallah." }
+        ];
+        
+        // Function to find the correct extension for a photo
+        async function findPhotoWithExtension(basePath) {
+            // Try to load the image with different extensions
+            for (const ext of photoExtensions) {
+                const img = new Image();
+                const src = `${basePath}.${ext}`;
+                
+                // Create a promise to check if image loads successfully
+                const imageLoadPromise = new Promise((resolve) => {
+                    img.onload = () => resolve(src);
+                    img.onerror = () => resolve(null);
+                });
+                
+                img.src = src;
+                const result = await imageLoadPromise;
+                
+                if (result) {
+                    return result;
+                }
+            }
+            
+            // If no image found with any extension, return a placeholder
+            return "https://images.unsplash.com/photo-1518568814500-bf0f8d125f46?ixlib=rb-4.0.3&auto=format&fit=crop&w=687&q=80";
+        }
+        
+        let currentSlide = 0;
+        
+        async function initializeSlideshow() {
+            const slidesContainer = document.querySelector('.slides');
+            
+            for (let i = 0; i < slidesData.length; i++) {
+                const slideData = slidesData[i];
+                const slide = document.createElement('div');
+                slide.className = `slide ${i === 0 ? 'active' : ''}`;
+                
+                // Find the correct image with extension
+                const imageSrc = await findPhotoWithExtension(slideData.src);
+                slide.style.backgroundImage = `url('${imageSrc}')`;
+                
+                const slideInfo = document.createElement('div');
+                slideInfo.className = 'slide-info';
+                slideInfo.textContent = slideData.caption;
+                
+                slide.appendChild(slideInfo);
+                slidesContainer.appendChild(slide);
+            }
+            
+            // Start slideshow
+            setInterval(nextSlide, 5000);
+        }
+        
+        function nextSlide() {
+            const slides = document.querySelectorAll('.slide');
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+        
+        function prevSlide() {
+            const slides = document.querySelectorAll('.slide');
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+        
+        // Photo grid functionality with local photos
+        async function initializePhotoGrid() {
+            const photoGrid = document.querySelector('.photo-grid');
+            
+            // Use the same images for the grid
+            for (let i = 0; i < slidesData.length; i++) {
+                const slideData = slidesData[i];
+                const photoItem = document.createElement('div');
+                photoItem.className = 'photo-item';
+                
+                const img = document.createElement('img');
+                
+                // Find the correct image with extension
+                const imageSrc = await findPhotoWithExtension(slideData.src);
+                img.src = imageSrc;
+                img.alt = slideData.caption;
+                
+                photoItem.appendChild(img);
+                photoGrid.appendChild(photoItem);
+            }
+        }
+        
+        // Audio player functionality with local music
+        let audio = null;
+        let isAudioReady = false;
+        
+        async function initializeAudioPlayer() {
+            audio = document.getElementById('birthdayAudio');
+            const playPauseBtn = document.getElementById('playPauseBtn');
+            const playIcon = playPauseBtn.querySelector('i');
+            const volumeSlider = document.getElementById('volumeSlider');
+            
+            // Set initial volume
+            audio.volume = 0.3;
+            
+            // Volume control
+            volumeSlider.addEventListener('input', function() {
+                audio.volume = this.value;
+            });
+            
+            // Try different audio extensions
+            const audioExtensions = ['mp3', 'wav', 'ogg', 'm4a'];
+            let audioFound = false;
+            
+            for (const ext of audioExtensions) {
+                const audioSrc = `music/music1.${ext}`;
+                
+                // Try to load the audio
+                try {
+                    // Test if file exists by making a HEAD request
+                    const response = await fetch(audioSrc, { method: 'HEAD' });
+                    if (response.ok) {
+                        audio.src = audioSrc;
+                        audioFound = true;
+                        console.log(`Audio file found: ${audioSrc}`);
+                        break;
+                    }
+                } catch (error) {
+                    // Try next extension
+                    continue;
+                }
+            }
+            
+            if (!audioFound) {
+                console.log("No local audio file found. Using placeholder.");
+                // Use a placeholder audio if local file not found
+                audio.src = "https://assets.codepen.io/1468070/perfect-ed-sheeran.mp3";
+                document.getElementById('songTitle').textContent = "Perfect by Ed Sheeran (placeholder)";
+            } else {
+                document.getElementById('songTitle').textContent = "Your Special Song";
+            }
+            
+            // Load the audio
+            audio.load();
+            
+            // Set up play/pause button
+            playPauseBtn.addEventListener('click', function() {
+                if (audio.paused) {
+                    playAudio();
+                } else {
+                    pauseAudio();
+                }
+            });
+            
+            // Set up audio event listeners
+            audio.addEventListener('play', function() {
+                playIcon.className = 'fas fa-pause';
+                hideInteractionNotice();
+            });
+            
+            audio.addEventListener('pause', function() {
+                playIcon.className = 'fas fa-play';
+            });
+            
+            // Mark audio as ready
+            isAudioReady = true;
+        }
+        
+        function playAudio() {
+            if (audio && isAudioReady) {
+                const playPromise = audio.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        console.log("Audio playing successfully");
+                    }).catch(error => {
+                        console.log("Audio playback failed:", error);
+                        showInteractionNotice();
+                    });
+                }
+            }
+        }
+        
+        function pauseAudio() {
+            if (audio && isAudioReady) {
+                audio.pause();
+            }
+        }
+        
+        function showInteractionNotice() {
+            document.getElementById('interactionNotice').style.display = 'block';
+        }
+        
+        function hideInteractionNotice() {
+            document.getElementById('interactionNotice').style.display = 'none';
+        }
+        
+        // Add click event to entire page to enable audio
+        document.addEventListener('click', function() {
+            // Try to play audio when user clicks anywhere
+            if (audio && audio.paused && isAudioReady) {
+                playAudio();
+            }
+            hideInteractionNotice();
+        });
+        
+        // Also try to play when user interacts with any button
+        document.addEventListener('DOMContentLoaded', async () => {
+            createFloatingHearts();
+            await initializeSlideshow();
+            await initializePhotoGrid();
+            await initializeAudioPlayer();
+            
+            // Add event listeners for navigation buttons
+            document.getElementById('nextBtn').addEventListener('click', nextSlide);
+            document.getElementById('prevBtn').addEventListener('click', prevSlide);
+            
+            // Try to autoplay audio after a short delay (might still be blocked by browser)
+            setTimeout(() => {
+                if (audio && isAudioReady) {
+                    playAudio();
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
